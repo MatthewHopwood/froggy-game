@@ -52,9 +52,9 @@ function Frog(x, y, width, height, speed)
             SKeyDown = false;
             this.y += this.speed;
 
-            if (this.y > 485)
+            if (this.y > 525)
             {
-                this.y = 485;
+                this.y = 525;
             }
         }
 
@@ -63,9 +63,9 @@ function Frog(x, y, width, height, speed)
             AKeyDown = false;
             this.x -= this.speed;
 
-            if (this.x < 25)
+            if (this.x < 30)
             {
-                this.x = 25;
+                this.x = 30;
             }
         }
         
@@ -74,9 +74,9 @@ function Frog(x, y, width, height, speed)
             DKeyDown = false;
             this.x += this.speed;
 
-            if (this.x > 775)
+            if (this.x > 770)
             {
-                this.x = 775;
+                this.x = 770;
             }
         }
         this.draw();
@@ -366,7 +366,7 @@ function DoEndGame()
 
 function MainLoop()
 {
-    ctx.clearRect(0, 0, 800, 500);
+    ctx.clearRect(0, 0, 800, 540);
     
     if (GameMode == 'EndGame')
     {
