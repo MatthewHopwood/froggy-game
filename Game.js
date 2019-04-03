@@ -41,9 +41,9 @@ function Frog(x, y, width, height, speed)
             WKeyDown = false;
             this.y -= this.speed;
 
-            if (this.y < 75)
+            if (this.y < 45)
             {
-                this.y = 75;
+                this.y = 45;
             }
         }
         
@@ -52,9 +52,9 @@ function Frog(x, y, width, height, speed)
             SKeyDown = false;
             this.y += this.speed;
 
-            if (this.y > 875)
+            if (this.y > 485)
             {
-                this.y = 875;
+                this.y = 485;
             }
         }
 
@@ -82,9 +82,9 @@ function Frog(x, y, width, height, speed)
         this.draw();
         this.dueCollision();
 
-        if (this.y < 125)
+        if (this.y < 75)
         {
-            this.y = 875;
+            this.y = 525;
             this.x = 375;
             FrogsSaved[FrogsSavedCount].alive = true;
             FrogsSavedCount++;
@@ -118,7 +118,7 @@ function Frog(x, y, width, height, speed)
 
             if (dx <= TotalWidth / 2 && dy <= TotalHeight / 2)
             {
-                this.y = 875;
+                this.y = 525;
                 this.x = 375;
                 FrogLives.splice(0,1); 
             }
@@ -136,7 +136,7 @@ function FrogLife(x, y)
     this.x = x;
     this.y = y;
     this.width = 25;
-    this.height = 50;
+    this.height = 25;
     this.update = function()
     {
         this.draw();
@@ -155,7 +155,7 @@ function FrogSaved(x, y)
     this.x = x;
     this.y = y;
     this.width = 50;
-    this.height = 50;
+    this.height = 25;
     this.update = function()
     {
         this.draw();
@@ -176,7 +176,7 @@ function Car(x, y, speed)
     this.x = x;
     this.y = y;
     this.width = 100;
-    this.height = 40;
+    this.height = 20;
     this.speed = speed;
     this.update = function()
     {
@@ -208,7 +208,7 @@ function Lane(x, y, colour)
     this.x = x;
     this.y = y;
     this.width = 800;
-    this.height = 100;
+    this.height = 60;
     this.colour = colour;
     this.update = function()
     {
@@ -242,18 +242,18 @@ function RestartGame()
     Cars = [];
     FrogsSavedCount = 0;
 
-    Player = new Frog(375, 875, 50, 50, 50);
+    Player = new Frog(375, 525, 50, 30, 30);
 
     var t = 0;
 
-    for (var y = 0; y < 900; y += 100)
+    for (var y = 0; y < 540; y += 60)
     {
         new Lane(0, y, LaneColours[t++]);
     }
 
     var StartLeft = true;
 
-    for (var y = 125; y < 14 * 50 + 125; y += 50)
+    for (var y = 75; y < 14 * 30 + 75; y += 30)
     {
         if(StartLeft)
         {
@@ -331,7 +331,7 @@ function MouseClick(Event)
     var x = Event.layerX;
     var y = Event.layerY;
 
-    if (x > 200 && x < 600 && y > 600 && y < 700 && GameMode == 'EndGame')
+    if (x > 0 && x < 800 && y > 0 && y < 540 && GameMode == 'EndGame')
     {
         GameMode = 'Game';
         RestartGame();
@@ -341,14 +341,14 @@ function MouseClick(Event)
 function DoEndGame()
 {
     ctx.fillStyle = 'rgb(0, 183, 255)';
-    ctx.fillRect(0, 0, 800, 900);
+    ctx.fillRect(0, 0, 800, 540);
     
     ctx.fillStyle = 'rgb(0, 0, 255)';
     ctx.fillRect(200, 600, 400, 100);
 
     ctx.font = '50px Arial';
     ctx.fillStyle = 'rgb(255, 255, 255)';
-    ctx.fillText('Restart Game', 245, 670);
+    ctx.fillText('Restart Game', 245, 370);
 
     if (Won)
     {
@@ -366,7 +366,7 @@ function DoEndGame()
 
 function MainLoop()
 {
-    ctx.clearRect(0, 0, 800, 900);
+    ctx.clearRect(0, 0, 800, 500);
     
     if (GameMode == 'EndGame')
     {
